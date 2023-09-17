@@ -1,0 +1,38 @@
+
+
+.container {
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.form {
+  margin-top: 50px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+a {
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover {
+  color: #ebebeb;
+  text-decoration: none;
+}
+
+.bg-white-50 {
+  opacity: 0.75;
+}
+
+.img {
+  display: block;
+  margin: 0 auto;
+  border: black;
+}
+
+#h-12{
+  color: #000000;
+  font-size: 50px;
+}
