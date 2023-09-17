@@ -9,7 +9,8 @@ import fileDefault from "./file-blank-solid-240.png";
 import fileCSS from "./file-css-solid-240.png";
 import filePdf from "./file-pdf-solid-240.png";
 import filePng from "./file-png-solid-240.png";
-
+import TumorsImage from "./Rectangle 1208.svg";
+import btcancer from "./btcancer.png";
 const ImageConfig = {
   default: fileDefault,
   pdf: filePdf,
@@ -26,4 +27,6 @@ export {
   Gradient,
   Bottompath,
   ImageConfig,
+  TumorsImage,
+  btcancer,
 };

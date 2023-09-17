@@ -7,6 +7,7 @@ import Navy from "../assets/Navy.png";
 import Rectangle1215 from "../assets/Rectangle 1215.png";
 import Rectangle1216 from "../assets/Rectangle 1216.png";
 import Rectangle1224 from "../assets/Rectangle 1224.png";
+import Rectangle1217 from "../assets/Rectangle 1217.jpg";
 import Newlogo from "./newlogo.svg";
 
 export {
@@ -18,5 +19,6 @@ export {
   Rectangle1215,
   Rectangle1224,
   Rectangle1216,
+  Rectangle1217,
   Newlogo,
 };

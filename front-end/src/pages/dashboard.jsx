@@ -2,53 +2,134 @@ import React from "react";
 import "./dashboard.css";
 import {Link} from 'react-router-dom'
 import Navy from '../assets/Navy.png';
-import { Rectangle1224 } from "../assets/dashboard";
+import {Rectangle1217}  from "../assets/dashboard";
 import { Rectangle1215 } from "../assets/dashboard";
+import { Rectangle1224 } from "../assets/dashboard";
 import { Rectangle1216 } from "../assets/dashboard";
-import { image18 } from "../assets/dashboard";
-import { image6 } from "../assets/dashboard";
-import { image3 } from "../assets/dashboard";
-import { image19 } from "../assets/dashboard";
-import DetectBrainTumors from "../components/dashboard/detectBrainTumors";
 
-
-import QAForum from "../components/dashboard/QAForum";
-import ViewPastReport from "../components/dashboard/ViewPastReport";
+import Icons from "../components/dashboard/Icons";
 
 export const Dashboard = () => {
+ return(
  
+<div className="dashboard">
+<Icons/>
+          <div className="text-wrapperdash">Dashboard</div> 
+          <div className="rectangle1" />
+          <Link to='/uploadmri'>
+          <img className="rectangle1217" alt="Rectangle" src={Rectangle1217}/>
+          </Link>
+          <div className="text-wrapper1217">Tumor Segmentation</div>
+          <div className="rectangle2" />
+          <Link to='/uploadimage'>
+          <img className="rectangle1215" alt="Rectangle" src={Rectangle1215}/>
+          </Link>
+          <div className="text-wrapper1215">Breast Cancer Detection</div>
+          <div className="rectangle3" />
+          <Link to='/history'>
+          <img className="rectangle1224" alt="Rectangle" src={Rectangle1216}/>
+          </Link>
+          <div className="text-wrapper1224">View Past Reports</div>
+</div>
 
-  return (
-    <div className="dashboard">
-   
-     
-          <div className="rectangle" />
-          <Link to="/contact" className="text-wrapper">Log out</Link>
-          <Link to ="/aboutus" className="text-wrapper-2">Profile</Link>
-          <Link to="/" className="text-wrapper-3">Dashboard</Link>
-          <Link to="/aboutus" className="text-wrapper-4">Home</Link>
-          <div className="group">
-            <div className="overlap-group">
-              <p className="tumor-ai">
-                <span className="span">Tumor</span>
-                <span className="text-wrapper-5">.ai</span>
-              </p>
-              <img className="navy-modern-AI" alt="Navy modern AI" src={Navy} />
-            </div>
-          </div>
-          <img className="image" alt="Image" src={ image18 } />
-          <img className="img" alt="Image" src={ image3 } />
-          <img className="image-2" alt="Image" src={ image6 } />
-          <img className="image-3" alt="Image" src={ image19 } />
-        
-        
-      <ViewPastReport/>
-        <DetectBrainTumors/>
-        <QAForum/>
-        <div className="text-wrapper-8">Dashboard</div>
-     
-    </div>
+    
+    
+    
   );
 };
 
+export default Dashboard;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from "react";
+// import "./Dashboard.css";
+// import {Link} from 'react-router-dom'
+// import Navy from '../assets/Navy.png';
+// import {Rectangle1217}  from "../assets/dashboard";
+// import { Rectangle1215 } from "../assets/dashboard";
+// import { Rectangle1224 } from "../assets/dashboard";
+// import { Rectangle1216 } from "../assets/dashboard";
+// import { image18 } from "../assets/dashboard";
+// import { image6 } from "../assets/dashboard";
+// import { image3 } from "../assets/dashboard";
+// import { image19 } from "../assets/dashboard";
+// import DetectBrainTumors from "../components/dashboard/DetectBrainTumors";
+
+
+// import "./Dashboard.css";
+// import QAForum from "../components/dashboard/QAForum";
+// import ViewPastReport from "../components/dashboard/ViewPastReport";
+// import Icons from "../components/dashboard/Icons";
+
+// export const Dashboard = () => {
  
+
+  
+//   return (
+  
+  
+//     <div className="dashboard">
+     
+   
+//           <Icons/>
+//           <div className="text-wrapperdash">Dashboard</div>
+//           <div className="rectangle1" />
+//           <Link to='/aboutus'>
+//           <img className="rectangle1217" alt="Rectangle" src={Rectangle1217}/>
+//           </Link>
+//           <div className="text-wrapper1217">Tumor Segmentation</div>
+//           <div className="rectangle2" />
+//           <Link to='/aboutus'>
+//           <img className="rectangle1215" alt="Rectangle" src={Rectangle1215}/>
+//           </Link>
+//           <div className="text-wrapper1215">Tumor Classification</div>
+//           <div className="rectangle3" />
+//           <Link to='/aboutus'>
+//           <img className="rectangle1224" alt="Rectangle" src={Rectangle1224}/>
+//           </Link>
+//           <div className="text-wrapper1224">Q & A Forum</div>
+//           <div className="rectangle4" />
+//           <Link to='/aboutus'>
+//           <img className="rectangle1216" alt="Rectangle" src={Rectangle1216}/>
+//           </Link>
+//           <div className="text-wrapper1216">View Past Reports</div>
+//       </div>
+    
+    
+//   );
+// };

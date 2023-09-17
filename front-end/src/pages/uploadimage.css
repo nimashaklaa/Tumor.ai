@@ -94,10 +94,10 @@
     line-height: normal;
 }
 
-.tumor-image-1{
+.tumor-image-2{
     position: absolute;
     top: 250px;
-    left: 735px;
+    left: 820px;
 }
 
 .download-1{
@@ -115,4 +115,16 @@
     border-radius: 10px;
     background: linear-gradient(96deg, #3A8EF6 -10.84%, #6F3AFA 196.74%);
 
+}
+
+.top-txt-2{
+    position: absolute;
+    top: 500px;
+    left: 950px;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    color: red;
 }
