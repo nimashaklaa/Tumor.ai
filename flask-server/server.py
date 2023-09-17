@@ -1,12 +1,23 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from dependencies import *
 from unet import *
 from dbserver import *
-
+from pymongo import MongoClient
+from PIL import Image
+import os
+import numpy as np
+import tensorflow as tf
+from keras.models import model_from_json
 
 app = Flask(__name__)
 CORS(app,supports_credentials=True)
+
+
+
+#initializing MongoDb Database
+mongo_uri = "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.6"
+client = MongoClient(mongo_uri)
 
 
 
@@ -17,9 +28,52 @@ segment_model = None
 path = "./model_state_dict.pt"
 data_transforms = None
 
+#skin cancer
+model =None
 
-CLIENT = CreateServer()
-InsertHistory(CLIENT,{'user_id':'test','scan_no':1 , 'date':'2021-09-01',  'report_id':'seg01'})
+def load_model():
+    global model
+    # Load the model architecture from the JSON file
+    with open('resnet.json', 'r') as json_file:
+        json_model = json_file.read()
+    # Create the model
+    model = model_from_json(json_model)
+    # Load the weights from the H5 file
+    model.load_weights('resnet50.h5')
+
+
+def preprocess_image(image):
+    image=image.resize((224,224))
+    image=np.array(image)
+    image = image[:,:,::-1]
+    image =np.expand_dims(image, axis=0)
+    return image
+
+
+@app.route('/skincancer', methods=['GET', 'POST'])
+def upload_skin_predict():
+    if request.method=='POST':
+        image_file = request.files['image']
+        if image_file:
+            image_location = os.path.join("./static",image_file.filename) 
+            image_file.save(image_location) 
+
+            image = Image.open(image_file)
+            image = preprocess_image(image)
+            prediction = model.predict(image)
+            if prediction[0][0] > 0.5:
+                result = 'Malignant'
+            else:
+                result = 'Benign'
+        return render_template('skincancer.html', result=result,image_loc =image_location)
+    return render_template('skincancer.html')
+
+
+
+
+
+#InsertHistory(client,{'user_id':'test','scan_no':1 , 'date':'2021-09-01',  'report_id':'seg01'})
+
 
 
 
@@ -48,7 +102,7 @@ def process_image(data_transforms, path_name, image_name, filemodel):
         plt.savefig("%s/%s-SEGMENTED.png" % (upload_folder, image_name), bbox_inches = "tight")
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/braintumor", methods=["GET", "POST"])
 def upload_predict():
     if request.method == "POST":
         image_file = request.files["image"]
@@ -64,10 +118,46 @@ def upload_predict():
             #calling for classification
             #predicted_tumor = model_predict(image_location, classifier_model)
 
-            return render_template("index.html", image_loc = ("%s-SEGMENTED.png" % image_name))
+            return render_template("braintumor.html", image_loc = ("%s-SEGMENTED.png" % image_name))
             
-    return render_template("index.html", prediction=0, image_loc=None)
+    return render_template("braintumor.html", prediction=0, image_loc=None)
 
+
+
+
+
+
+@app.route("/history/<user_id>", methods=["GET", "POST"])
+def history_page(user_id):
+    if request.method == "GET":
+        history_data = GetHistory(client,user_id)
+        print(user_id)
+        print(history_data[0])
+        if user_id == history_data[0]['user_id']:
+            for entry in history_data[0][user_id]:
+                del entry['_id']
+            return jsonify(history_data[0])
+        else:
+            return jsonify({'message': 'User not found'}), 404
+        
+
+
+@app.route("/profile/<user_id>", methods=["GET", "POST"])
+def profile_page(user_id):
+    if request.method == "GET":
+        profile_data = GetProfile(client,user_id)
+        if user_id in profile_data:
+            return jsonify(profile_data[user_id])
+        else:
+            return jsonify({'message': 'User not found'}), 404
+        
+
+
+
+
+@app.route("/", methods=["GET", "POST"])
+def home():
+    return render_template('index.html')
 
 if __name__ == "__main__":
     segment_model = UNet().to(device)   #loading the whole model architecture
@@ -76,6 +166,9 @@ if __name__ == "__main__":
     segment_model.eval()    #switch the model from training mode to evaluation mode
 
     data_transforms = transforms.Compose([transforms.Resize(256),transforms.ToTensor()])
+
+
+    load_model() #skin cancer detection
     app.run(host="0.0.0.0", port=12000, debug=True)
 
 
