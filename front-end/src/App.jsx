@@ -64,6 +64,7 @@ function App() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/forum" element={<Forum />} />
       <Route path="/results" element={<Results />} />
+      <Route path="/hm" element={<Results />} />
     </Routes>
     </BrowserRouter>
 
