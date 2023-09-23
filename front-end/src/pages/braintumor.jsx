@@ -12,7 +12,7 @@ function Braintumor() {
 
   const colStyle1 = {
     fontFamily: 'Montserrat',
-    fontSize: '24px',
+    fontSize: '46px',
     fontStyle: 'normal',
     fontWeight: '800',
     lineHeight: 'normal',
@@ -24,26 +24,40 @@ function Braintumor() {
     color: 'white',
     padding: '15px',
     borderRadius: '5px',
+    display : 'flex',
+    alignItems : 'center',
+    justifyContent : 'center'
   };
-
   const colStyle2 = {
+    width: '90vw',
     fontFamily: 'Montserrat',
-    fontSize: '18px',
+    fontSize: '26px',
     fontStyle: 'normal',
     fontWeight: '400',
     lineHeight: 'normal',
     padding: '15px',
-  };
-
-  const colStyle3 = {
-    backgroundColor: 'green',
-    height: '50vh',
-    width: '50vw',
+    marginLeft: 'auto',
+    marginRight: 'auto',
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
   };
+  
+  const divstyle1 = {
+    marginTop : '50px',
+    width: '400px',
+    height: '350px',
+    alignself : 'center',
+    justifyContent: 'center',
+    justifySelf: 'center',
+    display: 'flex',
+    borderRadius : '10px',
+    flexDirection: 'column',
+    gap: '5px',
+  };
+  
+
 
   return (
     <>
@@ -53,44 +67,21 @@ function Braintumor() {
           Brain Tumor Segmentation
         </Col>
         <Col sm={12} md={6} style={colStyle2}>
-          Step into the future of breast cancer segmentation with our revolutionary technology. By simply uploading a .jpeg image and clicking 'Scan,' our advanced U-Net model swiftly identifies cancer locations, offering healthcare professionals a streamlined and efficient tool for breast cancer detection.
+          Step into the future of brain tumor segmentation with our revolutionary technology. By simply uploading a .jpeg image and clicking 'Scan,' our advanced U-Net model swiftly identifies cancer locations, offering healthcare professionals a streamlined and efficient tool for brain tumor detection.
         </Col>
       </Row>
     </Container>
-    <Container>
-      <Row style={{ display: 'flex' }}>
-        <Col sm={6} md={3} style={{ backgroundColor: '#F3F3FD', height: '70vh', width: '50vw', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-          <Row style={{ height: '40vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <DropFileInput onFileChange={(files) => onFileChange(files)} />
-          </Row>
-          <Row style={{  height: '20vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ background: 'linear-gradient(96deg, #3A8EF6 -10.84%, #6F3AFA 196.74%)', borderRadius: '16px' }}>
+     <Container style = {{display : 'flex', flexDirection : 'row', justifyItems: 'center', alignContent: 'center', justifyContent: 'center'}}>
+      <div style={divstyle1}>
+      <DropFileInput onFileChange={(files) => onFileChange(files)} />
+      <div >
             <InputFileUpload />
             </div>
-          </Row>
-          <Row style={{  height: '10vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', alignContent: 'center', flexDirection: 'column' }}>
-  <div style={{ background: 'linear-gradient(96deg, #3A8EF6 -10.84%, #6F3AFA 196.74%)', borderRadius: '10px' }}>
-    <Button  style={{ alignSelf: 'center', color: 'white', fontSize: '16px', fontStyle: 'normal', width: '100px',fontWeight: '500', lineHeight: 'normal', position: 'static' }}>Submit</Button>
-  </div>
-</Row>
+          <Button  style={{ alignSelf: 'center', borderRadius: '25px',color: 'white', fontSize: '16px', fontStyle: 'normal', width: '400px',fontWeight: '500', lineHeight: 'normal', position: 'static' }}>Submit</Button>
+      </div>
+     </Container>
 
 
-
-        </Col>
-        <Col sm={6} md={3} style={{ height: '70vh', width: '50vw' ,  display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <Row style={{  height: '50vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-             <div style={{ width: '30vw', height: '20vh', backgroundColor: 'grey', borderRadius: '10px', display: 'flex', justifyContent: 'center', alignContent: 'center', alignItems: 'center'}}>
-              Your Results will display here
-             </div>
-          </Row>
-          <Row style={{  height: '20vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Button style={{position : 'static', width: '100px'}}>Download</Button>
-            </div>
-          </Row>
-        </Col>
-      </Row>
-    </Container>
     </>
   );
 }
