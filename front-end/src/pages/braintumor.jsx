@@ -8,8 +8,17 @@ import InputFileUpload from '../components/mrisection/fileupload';
 function Braintumor() {
   const containerStyle = {
     backgroundColor: '#F3F3FD',
+    width: '100%',
+    height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundSize: '100% 100%',
+    backgroundImage:
+      'linear-gradient(-45deg, yellow 0%, yellow 25%, yellow 51%, #ff357f 100%)',
+    WebkitAnimation: 'AnimateBG 20s ease infinite',
+    animation: 'AnimateBG 20s ease infinite',
   };
-
   const colStyle1 = {
     fontFamily: 'Montserrat',
     fontSize: '46px',
@@ -61,7 +70,8 @@ function Braintumor() {
 
   return (
     <>
-    <Container style={containerStyle}>
+    
+    <Container>
       <Row>
         <Col sm={12} md={6} style={colStyle1}>
           Brain Tumor Segmentation
@@ -80,6 +90,7 @@ function Braintumor() {
           <Button  style={{ alignSelf: 'center', borderRadius: '25px',color: 'white', fontSize: '16px', fontStyle: 'normal', width: '400px',fontWeight: '500', lineHeight: 'normal', position: 'static' }}>Submit</Button>
       </div>
      </Container>
+  
 
 
     </>
