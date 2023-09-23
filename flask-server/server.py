@@ -10,14 +10,126 @@ import numpy as np
 import tensorflow as tf
 from keras.models import model_from_json
 
+
+#gmail functionality
+from google.oauth2 import service_account
+import googleapiclient.discovery
 app = Flask(__name__)
 CORS(app,supports_credentials=True)
 
 
 
+
+# Load OAuth2 credentials from the JSON file
+creds = None
+SCOPES = ['https://www.googleapis.com/auth/gmail.send']
+
+creds = service_account.Credentials.from_service_account_file(
+    'credentials.json', scopes=SCOPES)
+
+# Create a Gmail API service
+service = googleapiclient.discovery.build('gmail', 'v1', credentials=creds)
+
 #initializing MongoDb Database
 mongo_uri = "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.6"
 client = MongoClient(mongo_uri)
+
+
+
+
+
+
+
+
+
+@app.route("/api/contactus", methods=[ "POST"])
+def contactus():
+    if request.method == "POST":
+        name = 'name'
+        email = 'navinda.20@gmail.com'
+        message = 'first test'
+        print(name,email,message)
+
+
+
+        message = create_message(
+            sender=email,
+            to='recipient@gmail.com',  # Replace with the recipient's email
+            subject=message,
+            message_text=f'Name: {name}\nEmail: {email}\nSubject: {message}\nMessage: {message}'
+        )
+        send_message(service, 'me', message)
+
+
+
+        return jsonify({'message': 'Message sent successfully'}), 200
+    else:
+        return jsonify({'message': 'Message not sent'}), 404
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -27,6 +139,71 @@ device = "cpu"
 segment_model = None
 path = "./model_state_dict.pt"
 data_transforms = None
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #skin cancer
 model =None
@@ -78,6 +255,47 @@ def upload_skin_predict():
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #for segmentation
 def image_loader(loader, image_name):
     image = Image.open(image_name)
@@ -121,6 +339,34 @@ def upload_predict():
             return render_template("braintumor.html", image_loc = ("%s-SEGMENTED.png" % image_name))
             
     return render_template("braintumor.html", prediction=0, image_loc=None)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
