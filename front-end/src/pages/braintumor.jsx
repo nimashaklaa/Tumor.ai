@@ -60,14 +60,14 @@ function Braintumor() {
     <Container>
       <Row style={{ display: 'flex' }}>
         <Col sm={6} md={3} style={{ backgroundColor: '#F3F3FD', height: '70vh', width: '50vw', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-          <Row style={{ backgroundColor: 'red', height: '40vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Row style={{ height: '40vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <DropFileInput onFileChange={(files) => onFileChange(files)} />
           </Row>
           <Row style={{  height: '20vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <InputFileUpload />
+            <InputFileUpload style={{  backgroundColor: 'linear-gradient(96deg, #3A8EF6 -10.84%, #6F3AFA 196.74%)'}} />
           </Row>
-          <Row style={{ backgroundColor: 'blue', height: '10vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Button className='submit-1'>Submit</Button>
+          <Row style={{ backgroundColor: 'blue', height: '10vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'center' , alignContent: 'center', flexDirection: 'column'}}>
+            <Button style={{ alignSelf: 'center', }}>Submit</Button>
           </Row>
         </Col>
         <Col sm={6} md={3} style={{ backgroundColor: 'yellow', height: '70vh', width: '50vw' ,  display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
@@ -75,7 +75,9 @@ function Braintumor() {
         
           </Row>
           <Row style={{  backgroundColor : 'purple',height: '20vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Button className='download-1'>Download</Button>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Button>Download</Button>
+            </div>
           </Row>
         </Col>
       </Row>
