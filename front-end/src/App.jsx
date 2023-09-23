@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Landingpage } from './pages/landingpage';
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { Navbar } from './components/Navbar/navbar';
+import { Navbar} from './components/Navbar/navbar';
 import { Aboutus } from './pages/aboutus';
 import  ContactUs  from './pages/contactus';
 import  NoPage  from './pages/nopage';
@@ -18,6 +18,7 @@ import Question from './pages/question';
 import History from './pages/history';
 import {BreastCancer} from './pages/uploadimage';
 import Profile from './pages/profile';
+import Braintumor from './pages/braintumor';
 function App() {
 
   const LayoutWithNavbar = () => (
@@ -65,6 +66,7 @@ function App() {
       <Route path="/history" element={<History />} />
       <Route path="/uploadimage" element={<BreastCancer />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/braintumor" element={<Braintumor />} />
     </Routes>
     </BrowserRouter>
 

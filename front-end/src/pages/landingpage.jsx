@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Navbar } from '../components/Navbar/navbar';
 import './landingpage.css'; 
 import  CustButton  from '../components/custbutton/custbutton';
 import {Oursolutions} from '../components/landingpage/oursolutions';
@@ -9,6 +8,7 @@ import { Button } from '@mui/base/Button';
 import  {CustFooter}  from '../components/landingpage/footer';
 import {Uploadmri} from './uploadmri'
 import { Outlet, Link } from "react-router-dom";
+import { Element } from 'react-scroll';
 
 export const  Landingpage = () => {
   return (
@@ -25,8 +25,8 @@ export const  Landingpage = () => {
       Using your MRI Images we predict whether your patient has tumor or not faster with the help of latest AI Technologies.
     </p>
     <Link to='/login'><Button className='scannow'>Scan Now</Button></Link>
-    
-    
+    <Element name="whoWeServe">
+    <section id='whoWeServe'>
     <p className='whoweserve'>
       WHO WE SERVE
     </p>
@@ -44,11 +44,18 @@ export const  Landingpage = () => {
     <p className='mprof-cnt'>With early detection and personalized care, our aim is to enhance the quality of life for individuals affected by tumors.</p>
     </div>
     </div>
-    <section id='whoWeServe'>
+    </section>
+    </Element>  
+   <Element name='ourSolutions'>
+   <section id='ourSolutions'>
     
     <p className='oursolution'>OUR SOLUTIONS</p>
     <Oursolutions/>
     <div className='line'></div>
+    </section>
+   </Element>
+    
+    <section id='howToUse'>
        <p className='howtouse'>How To Use The System</p>
 
     <img src={Bottompath} alt='logo' className='btm-path' />

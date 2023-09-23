@@ -11,6 +11,7 @@
     margin: 0;
     background-color: #f3f3fd;
     overflow-x: hidden;
+    overflow-y: scroll;
   }
   html {
     font-size: 16px; /* Set a base font size */

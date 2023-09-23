@@ -1,51 +1,33 @@
 import React from 'react'
 import './footer.css'
 import { Backhead, Gradient, Bottompath, WhiteLogo,Newlogo } from '../../assets/index';
-import { Link } from 'react-router-dom';
+import { Link, animateScroll as scroll } from 'react-scroll';
 
 export const CustFooter = () => {
 
-    const scrollToSection = (sectionId) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const targetY = element.getBoundingClientRect().top + window.scrollY;
-          const initialY = window.scrollY;
-          const diff = targetY - initialY;
-          const duration = 500; // Adjust the duration to control the scroll speed (milliseconds)
-          let start;
-    
-          const step = (timestamp) => {
-            if (!start) start = timestamp;
-            const progress = timestamp - start;
-            window.scrollTo(0, initialY + easeInOutQuad(progress, 0, diff, duration));
-    
-            if (progress < duration) {
-              requestAnimationFrame(step);
-            }
-          };
-    
-          // Easing function for smooth scrolling
-          const easeInOutQuad = (t, b, c, d) => {
-            t /= d / 2;
-            if (t < 1) return (c / 2) * t * t + b;
-            t--;
-            return (-c / 2) * (t * (t - 2) - 1) + b;
-          };
-    
-          requestAnimationFrame(step);
-        }
-      };
+  const scrollToSection = (sectionId) => {
+    console.log(sectionId);
+    scroll.scrollTo(sectionId, {
+      smooth: true,
+      duration: 500, 
+    });
+  };
+  
 
   return (
     <div className='footer'>
         <img src={WhiteLogo} alt='logo' className='white-logo' />
-        <div className='footer-links'>
-            <ul>
-                <li className='wws'><a href='#' onClick={() => scrollToSection('whoWeServe')}>WHO WE SERVE</a></li>
-                <li className='osns'><a href='#' onClick={() => scrollToSection('ourSolutions')}>OUR SOLUTIONS</a></li>
-                <li className='hwtwouse'><a href='#' onClick={() => scrollToSection('howToUse')}>HOW TO USE</a></li>
-            </ul>
-        </div>
+
+
+<div className='footer-links'>
+    <ul>
+        <li className='wws'><Link to="whoWeServe" smooth={true} duration={500}  onClick={() => scrollToSection('whoWeServe')}>WHO WE SERVE</Link>
+</li>
+        <li className='osns'><Link to="ourSolutions" smooth={true} duration={500}  onClick={() => scrollToSection('ourSolutions')}>OUR SOLUTIONS</Link></li>
+        <li className='hwtwouse'><Link to="howToUse" smooth={true} duration={500}>OUR SOLUTIONS</Link></li>
+    </ul>
+</div>
+
         <div className='footer-links-2'>
             <ul>
                 <li className='home-1'><a href='/'>HOME</a></li>

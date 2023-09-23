@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ContactUs.css';
 import rectangle1190 from '../assets/Rectangle 1190.png'
-import { Navbar } from '../components/Navbar/navbar';
+
 import { Link } from "react-router-dom";
 
 
