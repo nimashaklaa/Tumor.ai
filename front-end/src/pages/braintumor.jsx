@@ -22,7 +22,7 @@ function Braintumor() {
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     color: 'white',
-    padding: '10px',
+    padding: '15px',
     borderRadius: '5px',
   };
 
@@ -32,7 +32,7 @@ function Braintumor() {
     fontStyle: 'normal',
     fontWeight: '400',
     lineHeight: 'normal',
-    padding: '10px',
+    padding: '15px',
   };
 
   const colStyle3 = {
@@ -64,19 +64,28 @@ function Braintumor() {
             <DropFileInput onFileChange={(files) => onFileChange(files)} />
           </Row>
           <Row style={{  height: '20vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <InputFileUpload style={{  backgroundColor: 'linear-gradient(96deg, #3A8EF6 -10.84%, #6F3AFA 196.74%)'}} />
+            <div style={{ background: 'linear-gradient(96deg, #3A8EF6 -10.84%, #6F3AFA 196.74%)', borderRadius: '16px' }}>
+            <InputFileUpload />
+            </div>
           </Row>
-          <Row style={{ backgroundColor: 'blue', height: '10vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'center' , alignContent: 'center', flexDirection: 'column'}}>
-            <Button style={{ alignSelf: 'center', }}>Submit</Button>
-          </Row>
+          <Row style={{  height: '10vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', alignContent: 'center', flexDirection: 'column' }}>
+  <div style={{ background: 'linear-gradient(96deg, #3A8EF6 -10.84%, #6F3AFA 196.74%)', borderRadius: '10px' }}>
+    <Button  style={{ alignSelf: 'center', color: 'white', fontSize: '16px', fontStyle: 'normal', width: '100px',fontWeight: '500', lineHeight: 'normal', position: 'static' }}>Submit</Button>
+  </div>
+</Row>
+
+
+
         </Col>
-        <Col sm={6} md={3} style={{ backgroundColor: 'yellow', height: '70vh', width: '50vw' ,  display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <Row style={{ backgroundColor: 'brown', height: '50vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        
+        <Col sm={6} md={3} style={{ height: '70vh', width: '50vw' ,  display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+        <Row style={{  height: '50vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+             <div style={{ width: '30vw', height: '20vh', backgroundColor: 'grey', borderRadius: '10px', display: 'flex', justifyContent: 'center', alignContent: 'center', alignItems: 'center'}}>
+              Your Results will display here
+             </div>
           </Row>
-          <Row style={{  backgroundColor : 'purple',height: '20vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Row style={{  height: '20vh', width: '50vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Button>Download</Button>
+              <Button style={{position : 'static', width: '100px'}}>Download</Button>
             </div>
           </Row>
         </Col>

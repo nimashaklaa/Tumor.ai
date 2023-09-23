@@ -5,8 +5,7 @@
     top: 300px;
     left: 140px;
     border-radius: 10px;
-    background: linear-gradient(96deg, #3A8EF6 -10.84%, #6F3AFA 196.74%);
-}
+  }
 
 
 .white-box-1{
@@ -50,11 +49,6 @@
 
 
 .submit-1{
-    position: absolute;
-    top: 570px;
-    left: 175px;
-    width: 138px;
-    height: 45px;
     color: #FFF;
     font-family: Montserrat;
     font-size: 16px;
