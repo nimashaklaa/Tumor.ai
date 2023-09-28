@@ -72,7 +72,35 @@ function Braintumor() {
     // Handle file changes here if needed
   };
 
-
+ 
+    const [selectedFile, setSelectedFile] = useState(null);
+  
+    const handleFileChange = (event) => {
+      const file = event.target.files[0];
+      setSelectedFile(file);
+    };
+  
+    const handleUpload = () => {
+      if (selectedFile) {
+        // Create a FormData object to send the file to the backend
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+  
+        // Make a POST request to the backend with the file data
+        axios.post('http://127.0.0.1:12000/api/upload', formData)
+          .then((response) => {
+            // Handle success
+            console.log('File uploaded successfully:', response.data);
+          })
+          .catch((error) => {
+            // Handle error
+            console.error('Error uploading file:', error);
+          });
+      } else {
+        // Handle case where no file is selected
+        console.error('No file selected.');
+      }
+    };
   return (
     <>
     
@@ -89,10 +117,28 @@ function Braintumor() {
      <Container style = {{display : 'flex', flexDirection : 'row', justifyItems: 'center', alignContent: 'center', justifyContent: 'center'}}>
       <div style={divstyle1}>
       <DropFileInput onFileChange={(files) => onFileChange(files)} />
-      <div >
-            <InputFileUpload />
+      <div style={{display : 'flex', justifyContent: 'center', alignContent : 'center',alignItems: 'center', justifyItems: 'center',}}>
+          {/* <InputFileUpload /> */}
+          <input
+  type="file"
+  accept=".jpg, .jpeg, .png"
+  onChange={handleFileChange}
+  style={{
+    fontFamily: 'Montserrat', // Use Montserrat font
+    display: 'block', // Display as a block element
+    margin: '0 auto', // Center horizontally
+    textAlign: 'center',
+    justifyContent: 'center',
+    display: 'flex',
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyItems: 'center',
+    width: '185px' // Center text horizontally
+  }}
+/>
+
             </div>
-          <Button  style={{ alignSelf: 'center', borderRadius: '25px',color: 'white', fontSize: '16px', fontStyle: 'normal', width: '400px',fontWeight: '500', lineHeight: 'normal', position: 'static' }}>Submit</Button>
+          <Button   onClick={handleUpload} style={{ alignSelf: 'center', borderRadius: '25px',color: 'white', fontSize: '16px', fontStyle: 'normal', width: '400px',fontWeight: '500', lineHeight: 'normal', position: 'static' }}>Submit</Button>
       </div>
      </Container>
   
