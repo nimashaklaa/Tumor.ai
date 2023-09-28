@@ -4,6 +4,8 @@ import Col from 'react-bootstrap/Col';
 import DropFileInput from '../components/drop-file-input/DropFileInput';
 import { Button } from '@mui/base/Button';
 import InputFileUpload from '../components/mrisection/fileupload';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 function Braintumor() {
   const containerStyle = {
@@ -66,6 +68,9 @@ function Braintumor() {
     gap: '5px',
   };
   
+  const onFileChange = (files) => {
+    // Handle file changes here if needed
+  };
 
 
   return (
