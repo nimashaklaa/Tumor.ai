@@ -71,7 +71,7 @@ function Braintumor() {
   const onFileChange = (files) => {
     // Handle file changes here if needed
   };
-
+    const [uploadedImage, setUploadedImage] = useState(null);
  
     const [selectedFile, setSelectedFile] = useState(null);
   
@@ -91,6 +91,9 @@ function Braintumor() {
           .then((response) => {
             // Handle success
             console.log('File uploaded successfully:', response.data);
+            const segmentedImagePath = response.data['segmented_image_path'];
+            console.log('Segmented image path:', segmentedImagePath);
+            setUploadedImage( segmentedImagePath);
           })
           .catch((error) => {
             // Handle error
@@ -101,6 +104,8 @@ function Braintumor() {
         console.error('No file selected.');
       }
     };
+
+  
   return (
     <>
     
@@ -140,6 +145,15 @@ function Braintumor() {
             </div>
           <Button   onClick={handleUpload} style={{ alignSelf: 'center', borderRadius: '25px',color: 'white', fontSize: '16px', fontStyle: 'normal', width: '400px',fontWeight: '500', lineHeight: 'normal', position: 'static' }}>Submit</Button>
       </div>
+      {uploadedImage && (
+        <div style={{ textAlign: 'center' }}>
+          <img
+            src={uploadedImage} // Set the image source to the received URL
+            alt="Uploaded"
+            style={{ maxWidth: '100%', maxHeight: '400px' }} // Adjust image dimensions as needed
+          />
+        </div>
+      )}
      </Container>
   
 
