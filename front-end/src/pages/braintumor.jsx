@@ -6,7 +6,7 @@ import { Button } from '@mui/base/Button';
 import InputFileUpload from '../components/mrisection/fileupload';
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import ResultModal from '../components/mrisection/resultModal';
 function Braintumor() {
   const containerStyle = {
     backgroundColor: '#F3F3FD',
@@ -67,6 +67,7 @@ function Braintumor() {
     flexDirection: 'column',
     gap: '5px',
   };
+ 
   
   const onFileChange = (files) => {
     // Handle file changes here if needed
@@ -80,6 +81,14 @@ function Braintumor() {
       setSelectedFile(file);
     };
   
+    const handleUploadedImage = (imagePath) => {
+      setUploadedImage(imagePath)
+      console.log('Received image path in parent component:', imagePath);
+      // You can set the image path in the parent component's state or perform any other necessary actions.
+    };
+
+
+
     const handleUpload = () => {
       if (selectedFile) {
         // Create a FormData object to send the file to the backend
@@ -93,7 +102,7 @@ function Braintumor() {
             console.log('File uploaded successfully:', response.data);
             const segmentedImagePath = response.data['segmented_image_path'];
             console.log('Segmented image path:', segmentedImagePath);
-            setUploadedImage( segmentedImagePath);
+            setUploadedImage(segmentedImagePath);
           })
           .catch((error) => {
             // Handle error
@@ -121,7 +130,7 @@ function Braintumor() {
     </Container>
      <Container style = {{display : 'flex', flexDirection : 'row', justifyItems: 'center', alignContent: 'center', justifyContent: 'center'}}>
       <div style={divstyle1}>
-      <DropFileInput onFileChange={(files) => onFileChange(files)} />
+      <DropFileInput onFileChange={handleUploadedImage}/>
       <div style={{display : 'flex', justifyContent: 'center', alignContent : 'center',alignItems: 'center', justifyItems: 'center',}}>
           {/* <InputFileUpload /> */}
           <input
@@ -145,18 +154,18 @@ function Braintumor() {
             </div>
           <Button   onClick={handleUpload} style={{ alignSelf: 'center', borderRadius: '25px',color: 'white', fontSize: '16px', fontStyle: 'normal', width: '400px',fontWeight: '500', lineHeight: 'normal', position: 'static' }}>Submit</Button>
       </div>
-      {uploadedImage && (
+     
+     </Container>
+      <ResultModal />
+     {uploadedImage && (
         <div style={{ textAlign: 'center' }}>
           <img
-            src={uploadedImage} // Set the image source to the received URL
+            src={`http://localhost:12000/${uploadedImage}`} // Update the URL
             alt="Uploaded"
-            style={{ maxWidth: '100%', maxHeight: '400px' }} // Adjust image dimensions as needed
+            style={{ maxWidth: '100%', maxHeight: '400px' }}
           />
         </div>
       )}
-     </Container>
-  
-
 
     </>
   );
