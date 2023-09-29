@@ -37,7 +37,7 @@ function Register() {
 
     if (!regex.test(formData.contactno)) {
       setCurrentError('contact no');
-    } else {
+    } else if (currentError === 'contactno') {
       setCurrentError(''); // Clear the error message when the input is valid
     }
   };
@@ -50,8 +50,15 @@ function Register() {
       setCurrentError('email');
       // Email is in correct format
       // No alert here as requested
-    } else {
+    } else if (currentError === 'email') {
       // Email is not in correct format, show the error popup
+      setCurrentError('');
+    }
+  };
+  const validatePasswordMatch = () => {
+    if (formData.password !== formData.confirm) {
+      setCurrentError('password');
+    } else if (currentError === 'password') {
       setCurrentError('');
     }
   }
@@ -71,13 +78,11 @@ function Register() {
      // Check contact number validity before proceeding
      validateContact();
      validateEmail();
-
-     if (formData.password !== formData.confirm) {
-      setCurrentError('password');
+     validatePasswordMatch();
+     
+     if (currentError) {
       setShowError(true);
       return;
-    } else {
-      setCurrentError('');
     }
     
        try {
@@ -109,6 +114,7 @@ function Register() {
      } catch (error) {
        console.error('Register:', error.message);
        setShowError(true);  // Display the error popup
+       //alert('registeration successful');
      }
    };
  
@@ -146,7 +152,7 @@ function Register() {
 
           <input className="input-6" type="text" name="contactno" placeholder="Contact Number" 
           value={formData.contactno} onChange={handleChange} onBlur={validateContact} required  />
-          {showError && (
+          {/*showError && (
               <ErrorPopup
                 message={
                   currentError=='contact no'
@@ -155,35 +161,49 @@ function Register() {
                 }
                 onClose={() => setShowError(false)} // Close the popup when the "Close" button is clicked
               />
-            )}
-          <input className="input-4" type="text" name="email" placeholder="Email" value={formData.email} onChange={(e) => setEmail(e.target.value)} onBlur={validateEmail}required  />
-            {showError && (
+              )*/}
+          <input className="input-4" type="text" name="email" placeholder="Email" value={formData.email} 
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })} onBlur={validateEmail}required  />
+            {/*showError && (
               <ErrorPopup
                 message={currentError=='email'
                 ? 'Please correct the email address'
                 : 'An error occurred during registration.'}
                 onClose={() => setShowError(false)}
               />
-            )}
+            )*/}
           <input className={`input-9 ${currentError === 'password' ? 'error' : ''}`} 
-            type="password" name="pass" placeholder="Password" value={formData.pass} onChange={(e) => setPassword(e.target.value)}required  />
-            <input className={`input-10 ${currentError === 'password' ? 'error' : ''}`}
-             type="password" name="confirm" placeholder="Confirm Password" 
-            value={formData.confirm} onChange={handleChange}required  />
-            {showError && (
+            type="password" name="pass" placeholder="Password" value={formData.pass} 
+            onChange={(e) =>  setFormData({ ...formData, password: e.target.value })}required  />
+          <input className={`input-10 ${currentError === 'password' ? 'error' : ''}`}
+            type="password" name="confirm" placeholder="Confirm Password" 
+            value={formData.confirm} onChange={handleChange} onBlur={validatePasswordMatch} required  />
+            {/*showError && (
               <ErrorPopup
                 message={currentError=='password'
                 ? 'password confirmation does not match'
                 : 'An error occurred during registration.'}
                 onClose={() => setShowError(false)}
               />
-            )}
+            )*/}
             <input onClick={handleRegister} type="submit" className="btn-Reg" value="Register" />
-       
-          
-          
+ 
         </div>
-      </div>  
+      </div> 
+      {showError && (
+          <ErrorPopup
+            message={
+              currentError === 'email'
+                ? 'Please Enter a valied email address'
+                : currentError === 'contact no'
+                ? 'Please Enter a valied contact number'
+                : currentError === 'password'
+                ? 'Password confirmation does not match'
+                : 'An error occurred during registration.'
+            }
+            onClose={() => setShowError(false)}
+          />
+        )} 
     </div>
   );
 }
