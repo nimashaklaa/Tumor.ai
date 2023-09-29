@@ -67,13 +67,28 @@ function Braintumor() {
     flexDirection: 'column',
     gap: '5px',
   };
- 
+  const buttonstyle1 = {
+    alignSelf: 'center',
+    borderRadius: '25px',
+    color: 'white',
+    fontSize: '16px',
+    fontStyle: 'normal',
+    width: '400px',
+    height : '40px',
+    fontWeight: '500',
+    lineHeight: 'normal',
+    position: 'static',
+    background: 'linear-gradient(96deg, #3A8EF6 -10.84%, #6F3AFA 196.74%)',
+    border: 'none',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease',
+  };
+  
   
   const onFileChange = (files) => {
     // Handle file changes here if needed
   };
     const [uploadedImage, setUploadedImage] = useState(null);
- 
     const [selectedFile, setSelectedFile] = useState(null);
   
     const handleFileChange = (event) => {
@@ -135,7 +150,7 @@ function Braintumor() {
           {/* <InputFileUpload /> */}
           <input
   type="file"
-  accept=".jpg, .jpeg, .png"
+  accept=".jpg, .jpeg, .png , .tif, .tiff"
   onChange={handleFileChange}
   style={{
     fontFamily: 'Montserrat', // Use Montserrat font
@@ -152,12 +167,13 @@ function Braintumor() {
 />
 
             </div>
-          <Button   onClick={handleUpload} style={{ alignSelf: 'center', borderRadius: '25px',color: 'white', fontSize: '16px', fontStyle: 'normal', width: '400px',fontWeight: '500', lineHeight: 'normal', position: 'static' }}>Submit</Button>
+          <Button   onClick={handleUpload} style={buttonstyle1}>Submit</Button>
       </div>
      
      </Container>
-      <ResultModal />
-     {uploadedImage && (
+     <ResultModal open={uploadedImage !== null} onClose={() => setUploadedImage(null)} imageSrc={`http://localhost:12000/${uploadedImage}`} />
+
+     {/* {uploadedImage && (
         <div style={{ textAlign: 'center' }}>
           <img
             src={`http://localhost:12000/${uploadedImage}`} // Update the URL
@@ -165,7 +181,7 @@ function Braintumor() {
             style={{ maxWidth: '100%', maxHeight: '400px' }}
           />
         </div>
-      )}
+      )} */}
 
     </>
   );
