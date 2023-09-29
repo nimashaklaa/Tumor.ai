@@ -9,18 +9,20 @@ import axios from 'axios';
 import ResultModal from '../components/mrisection/resultModal';
 function Braintumor() {
   const containerStyle = {
-    backgroundColor: '#F3F3FD',
-    width: '100%',
-    height: '100vh',
+    position: 'absolute',
+    left: '5vw',
+    top: '3vh', // 10% of the viewport width
+    backgroundColor: '#FFFFFF',
+    width: '90vw', // 80% width of the viewport
+    height: '90vh',
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundSize: '100% 100%',
-    backgroundImage:
-      'linear-gradient(-45deg, yellow 0%, yellow 25%, yellow 51%, #ff357f 100%)',
-    WebkitAnimation: 'AnimateBG 20s ease infinite',
-    animation: 'AnimateBG 20s ease infinite',
+    overflow: 'hidden',
+    boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.05)', // Add a drop shadow
   };
+  
   const colStyle1 = {
     fontFamily: 'Montserrat',
     fontSize: '46px',
@@ -132,7 +134,7 @@ function Braintumor() {
   
   return (
     <>
-    
+    <Container style={containerStyle}>
     <Container>
       <Row>
         <Col sm={12} md={6} style={colStyle1}>
@@ -182,7 +184,7 @@ function Braintumor() {
           />
         </div>
       )} */}
-
+    </Container>
     </>
   );
 }
