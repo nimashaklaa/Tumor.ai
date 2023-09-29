@@ -11,15 +11,14 @@ function Braintumor() {
   const containerStyle = {
     position: 'absolute',
     left: '5vw',
-    top: '3vh', // 10% of the viewport width
+    top: '1vh', // 10% of the viewport width
     backgroundColor: '#FFFFFF',
     width: '90vw', // 80% width of the viewport
-    height: '90vh',
+    height: '99vh',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
+    overflowX: 'auto',
     boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.05)', // Add a drop shadow
   };
   
@@ -42,7 +41,7 @@ function Braintumor() {
     justifyContent : 'center'
   };
   const colStyle2 = {
-    width: '90vw',
+    width: '80vw',
     fontFamily: 'Montserrat',
     fontSize: '26px',
     fontStyle: 'normal',
