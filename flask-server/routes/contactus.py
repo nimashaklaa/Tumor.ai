@@ -3,16 +3,24 @@ from flask import Blueprint, jsonify, request
 from email.mime.text import MIMEText
 import smtplib
 from email.mime.text import MIMEText
+import json
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
+
+
+
+with open('credentials.json', 'r') as credentials_file:
+    credentials = json.load(credentials_file)
+
+
 # Create a Blueprint for contactus
 contactus_bp = Blueprint('contactus', __name__)
 
-smtp_server = 'smtp.gmail.com'
-smtp_port = 587
-smtp_username = 'sithnavin@gmail.com'
-smtp_password = 'mbil yntd zxeb cigc'
-subject = "Response to Your Inquiry from Tumor.ai"
+smtp_server = credentials['smtp_server']
+smtp_port = credentials['smtp_port']
+smtp_username = credentials['smtp_username']
+smtp_password = credentials['smtp_password']
+subject = credentials['subject']
 
 # Define route handlers for /api/contactus
 
