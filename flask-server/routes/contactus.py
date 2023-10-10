@@ -16,11 +16,13 @@ with open('E:\\Engineering\\Semester 5\\SE Project\\TumorAI\\Tumor.ai\\flask-ser
 # Create a Blueprint for contactus
 contactus_bp = Blueprint('contactus', __name__)
 
+
 smtp_server = credentials['smtp_server']
 smtp_port = credentials['smtp_port']
 smtp_username = credentials['smtp_username']
 smtp_password = credentials['smtp_password']
 subject = credentials['subject']
+
 
 # Define route handlers for /api/contactus
 
