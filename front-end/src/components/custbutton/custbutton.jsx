@@ -11,7 +11,7 @@ function CustButton() {
 //   };
 
   return (
-      <button onClick={console.log('hello')}>Login</button>
+      <button className='cust-button-1' onClick={console.log('hello')}>Login</button>
   );
 }
 

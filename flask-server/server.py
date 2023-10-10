@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, send_from_directory
 from flask_cors import CORS
 # from dependencies import *
 # from unet import *
@@ -89,11 +89,20 @@ data_transforms = None
 
 
 
+@app.route('/static/<path:filename>')
+def test(filename):
+    print(filename)
+    print(os.path.join('static', filename))
+    return send_from_directory('static',  filename)
 
 
 
 
 
+
+@app.route('/test')
+def serve_image():
+    return jsonify({'message': 'Email sent successfully'}), 200
 
 
 
