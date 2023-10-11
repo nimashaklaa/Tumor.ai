@@ -97,6 +97,7 @@ function Register() {
            key8: formData. confirm
            
          };
+         
        const FiredataRef = collection(fire_db,'users')
        try {
          const docRef = await addDoc(FiredataRef, newData);
